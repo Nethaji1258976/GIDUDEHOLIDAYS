@@ -1,0 +1,80 @@
+<%- include('partials/admin-sidebar', { pageTitle: 'Enquiries', activePage: 'contacts' }) %>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <div class="topbar-title">
+      <h2>📧 Contact Enquiries</h2>
+      <p>Manage all customer enquiries</p>
+    </div>
+    <div class="topbar-right">
+      <div class="admin-avatar">A</div>
+    </div>
+  </div>
+
+  <div class="admin-content">
+    <% if (typeof msg !== 'undefined' && msg) { %>
+      <div class="alert alert-<%= msg.type==='success'?'success':'error' %>" style="margin-bottom:20px;"><%= msg.text %></div>
+    <% } %>
+
+    <div class="admin-card">
+      <div class="card-header">
+        <h3>All Enquiries (<%= contacts ? contacts.length : 0 %>)</h3>
+        <div style="display:flex;gap:8px;">
+          <form method="POST" action="/admin/contacts/mark-all-read" style="display:inline;">
+            <button type="submit" class="btn-sm btn-success">✅ Mark All Read</button>
+          </form>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email / Phone</th>
+              <th>Subject</th>
+              <th>Message</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (contacts && contacts.length > 0) { %>
+              <% contacts.forEach(c => { %>
+                <tr style="<%= !c.isRead ? 'background:rgba(240,165,0,0.04);' : '' %>">
+                  <td><strong><%= c.name %></strong></td>
+                  <td>
+                    <a href="mailto:<%= c.email %>" style="color:var(--sky);text-decoration:none;"><%= c.email %></a><br>
+                    <% if (c.phone) { %><small><%= c.phone %></small><% } %>
+                  </td>
+                  <td><%= c.subject || '—' %></td>
+                  <td style="max-width:240px;"><span style="display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><%= c.message %></span></td>
+                  <td><small><%= new Date(c.createdAt).toLocaleDateString('en-IN') %></small></td>
+                  <td><span class="badge <%= c.isRead ? 'badge-success' : 'badge-warning' %>"><%= c.isRead ? 'Read' : 'New' %></span></td>
+                  <td>
+                    <div class="action-btns">
+                      <% if (!c.isRead) { %>
+                        <form method="POST" action="/admin/contacts/read/<%= c._id %>" style="display:inline;">
+                          <button type="submit" class="btn-sm btn-success" title="Mark as read">✅</button>
+                        </form>
+                      <% } %>
+                      <a href="mailto:<%= c.email %>?subject=Re: <%= c.subject || 'Your Enquiry' %>" class="btn-sm btn-info" title="Reply">📧 Reply</a>
+                      <form method="POST" action="/admin/contacts/delete/<%= c._id %>" style="display:inline;"
+                            onsubmit="return confirm('Delete this enquiry?')">
+                        <button type="submit" class="btn-sm btn-danger">🗑</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr><td colspan="7" style="text-align:center;padding:48px;color:var(--gray);">No enquiries yet</td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>setTimeout(()=>{const a=document.querySelector('.alert');if(a){a.style.transition='opacity 0.5s';a.style.opacity='0';setTimeout(()=>a.remove(),500);}},4000);</script>
+</body></html>

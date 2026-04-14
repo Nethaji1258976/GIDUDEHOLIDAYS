@@ -1,0 +1,133 @@
+<%- include('partials/admin-sidebar', { pageTitle: 'Dashboard', activePage: 'dashboard' }) %>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <div class="topbar-title">
+      <h2>Dashboard</h2>
+      <p>Welcome back, Admin 👋</p>
+    </div>
+    <div class="topbar-right">
+      <a href="/" target="_blank" class="btn-sm btn-info">🌐 View Site</a>
+      <div class="admin-avatar">A</div>
+    </div>
+  </div>
+
+  <div class="admin-content">
+    <% if (typeof msg !== 'undefined' && msg) { %>
+      <div class="alert alert-<%= msg.type === 'success' ? 'success' : 'error' %>" style="margin-bottom:20px;">
+        <%= msg.text %>
+      </div>
+    <% } %>
+
+    <!-- Stat Cards -->
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-icon blue">👥</div>
+        <div class="stat-info">
+          <div class="num"><%= userCount || 0 %></div>
+          <div class="label">Registered Users</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon gold">📧</div>
+        <div class="stat-info">
+          <div class="num"><%= contactCount || 0 %></div>
+          <div class="label">Total Enquiries</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">🤝</div>
+        <div class="stat-info">
+          <div class="num"><%= agentCount || 0 %></div>
+          <div class="label">B2B Agents</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon red">✈</div>
+        <div class="stat-info">
+          <div class="num"><%= packageCount || 0 %></div>
+          <div class="label">Packages</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;">
+      <!-- Recent Enquiries -->
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>📧 Recent Enquiries</h3>
+          <a href="/admin/contacts" class="btn-sm btn-info">View All</a>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Name</th><th>Subject</th><th>Status</th></tr></thead>
+            <tbody>
+              <% if (recentContacts && recentContacts.length > 0) { %>
+                <% recentContacts.forEach(c => { %>
+                  <tr>
+                    <td><strong><%= c.name %></strong><br><small style="color:var(--gray)"><%= c.email %></small></td>
+                    <td><%= c.subject || 'General' %></td>
+                    <td><span class="badge <%= c.isRead ? 'badge-success' : 'badge-warning' %>"><%= c.isRead ? 'Read' : 'New' %></span></td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr><td colspan="3" style="text-align:center;color:var(--gray);padding:32px;">No enquiries yet</td></tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Recent Agents -->
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>🤝 Recent B2B Registrations</h3>
+          <a href="/admin/agents" class="btn-sm btn-info">View All</a>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Agency</th><th>Contact</th><th>Status</th></tr></thead>
+            <tbody>
+              <% if (recentAgents && recentAgents.length > 0) { %>
+                <% recentAgents.forEach(a => { %>
+                  <tr>
+                    <td><strong><%= a.agencyName %></strong></td>
+                    <td><%= a.contactPerson %></td>
+                    <td>
+                      <span class="badge badge-<%= a.status==='approved'?'success':a.status==='rejected'?'danger':'warning' %>">
+                        <%= a.status %>
+                      </span>
+                    </td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr><td colspan="3" style="text-align:center;color:var(--gray);padding:32px;">No registrations yet</td></tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="admin-card" style="margin-top:28px;">
+      <div class="card-header"><h3>⚡ Quick Actions</h3></div>
+      <div class="card-body" style="display:flex;gap:16px;flex-wrap:wrap;">
+        <a href="/admin/packages/new" class="btn-sm btn-primary-sm" style="padding:12px 24px;font-size:14px;">➕ Add New Package</a>
+        <a href="/admin/contacts" class="btn-sm btn-info" style="padding:12px 24px;font-size:14px;">📧 View Enquiries</a>
+        <a href="/admin/agents" class="btn-sm btn-success" style="padding:12px 24px;font-size:14px;">🤝 Review Agents</a>
+        <a href="/admin/users" class="btn-sm btn-info" style="padding:12px 24px;font-size:14px;">👥 View Users</a>
+        <a href="/" target="_blank" class="btn-sm btn-info" style="padding:12px 24px;font-size:14px;">🌐 View Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Auto-dismiss alerts
+setTimeout(() => {
+  const a = document.querySelector('.alert');
+  if (a) { a.style.transition = 'opacity 0.5s'; a.style.opacity = '0'; setTimeout(() => a.remove(), 500); }
+}, 4000);
+</script>
+</body></html>

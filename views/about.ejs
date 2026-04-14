@@ -1,0 +1,74 @@
+<%- include('partials/header', { pageTitle: 'About Us', activePage: 'about' }) %>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1920&q=80');"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="section-tag">Our Story</div>
+    <h1>About GoDude Holidays</h1>
+    <div class="breadcrumb"><a href="/">Home</a> › About</div>
+  </div>
+</div>
+
+<section class="section">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80" alt="Travel team" />
+        <div class="about-badge">
+          <div class="num">500+</div>
+          <div class="label">Happy Travellers</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-tag">Who We Are</div>
+        <h2 class="section-title">Crafting Journeys with <span>Heart & Expertise</span></h2>
+        <p style="color:var(--gray);line-height:1.7;margin-bottom:16px;">GoDude Holidays is a Madurai-based B2B travel company specialising in Southeast Asian travel packages. Founded with a vision to simplify travel planning for agents and holidaymakers alike, we bring transparency, reliability, and genuine passion to every journey we craft.</p>
+        <p style="color:var(--gray);line-height:1.7;margin-bottom:24px;">With direct partnerships with hotels, local operators, and transport providers across Singapore, Malaysia, Bali, Thailand, and Vietnam, we deliver unmatched value with zero hidden charges.</p>
+        <ul class="feature-list">
+          <li>Direct contracts with 500+ hotels across Southeast Asia</li>
+          <li>Dedicated B2B support for travel agents & operators</li>
+          <li>All-inclusive packages with transparent pricing</li>
+          <li>2-hour quote turnaround guarantee</li>
+          <li>Experienced team with 5+ years in the travel industry</li>
+          <li>Trusted by 100+ travel agencies across Tamil Nadu</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--gray-light);padding-top:80px;padding-bottom:80px;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div class="section-header center reveal">
+      <div class="section-tag">Why GoDude</div>
+      <h2 class="section-title">Our <span>Promise</span> to You</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:28px;margin-top:48px;">
+      <% [
+        {icon:'🎯', title:'Transparent Pricing', desc:'No hidden fees, no surprises. The price we quote is the price you pay.'},
+        {icon:'⚡', title:'2-Hour Response', desc:'We guarantee a quote within 2 hours on all enquiries — so you can serve your clients faster.'},
+        {icon:'🤝', title:'Agent-First Approach', desc:'Special rates, tools, and support designed exclusively for travel professionals.'},
+        {icon:'🌍', title:'Local Expertise', desc:'On-ground partnerships across every destination ensure authentic local experiences.'},
+        {icon:'📱', title:'24/7 Support', desc:'Reach us anytime via WhatsApp, phone, or email — we\'re always available for you.'},
+        {icon:'💯', title:'100% Reliable', desc:'Track record of 500+ successful trips with zero major complaints.'}
+      ].forEach(f => { %>
+        <div class="reveal" style="background:var(--white);border-radius:16px;padding:32px;text-align:center;box-shadow:var(--shadow-sm);">
+          <div style="font-size:2.5rem;margin-bottom:16px;"><%- f.icon %></div>
+          <h4 style="color:var(--ocean);margin-bottom:10px;"><%- f.title %></h4>
+          <p style="color:var(--gray);font-size:14px;line-height:1.6;"><%- f.desc %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section style="background:linear-gradient(135deg,var(--ocean),var(--deep));padding:80px 5%;text-align:center;">
+  <div class="reveal">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--white);margin-bottom:16px;">Ready to Plan Your Next Trip?</h2>
+    <p style="color:rgba(255,255,255,0.7);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;">Get in touch with our team and let us handle the rest.</p>
+    <a href="/contact" class="btn btn-primary">📞 Contact Us Today</a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

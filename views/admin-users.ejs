@@ -1,0 +1,62 @@
+<%- include('partials/admin-sidebar', { pageTitle: 'Users', activePage: 'users' }) %>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <div class="topbar-title">
+      <h2>👥 Registered Users</h2>
+      <p>All website-registered users</p>
+    </div>
+    <div class="topbar-right">
+      <div class="admin-avatar">A</div>
+    </div>
+  </div>
+
+  <div class="admin-content">
+    <% if (typeof msg !== 'undefined' && msg) { %>
+      <div class="alert alert-<%= msg.type==='success'?'success':'error' %>" style="margin-bottom:20px;"><%= msg.text %></div>
+    <% } %>
+
+    <div class="admin-card">
+      <div class="card-header">
+        <h3>All Users (<%= users ? users.length : 0 %>)</h3>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="admin-table">
+          <thead>
+            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Registered</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            <% if (users && users.length > 0) { %>
+              <% users.forEach(u => { %>
+                <tr>
+                  <td><strong><%= u.fullName %></strong></td>
+                  <td><a href="mailto:<%= u.email %>" style="color:var(--sky);text-decoration:none;"><%= u.email %></a></td>
+                  <td><%= u.phone || '—' %></td>
+                  <td><small><%= new Date(u.createdAt).toLocaleDateString('en-IN') %></small></td>
+                  <td><span class="badge <%= u.isActive ? 'badge-success' : 'badge-danger' %>"><%= u.isActive ? 'Active' : 'Inactive' %></span></td>
+                  <td>
+                    <div class="action-btns">
+                      <form method="POST" action="/admin/users/toggle/<%= u._id %>" style="display:inline;">
+                        <button type="submit" class="btn-sm <%= u.isActive ? 'btn-danger' : 'btn-success' %>">
+                          <%= u.isActive ? '🚫 Disable' : '✅ Enable' %>
+                        </button>
+                      </form>
+                      <form method="POST" action="/admin/users/delete/<%= u._id %>" style="display:inline;"
+                            onsubmit="return confirm('Permanently delete this user?')">
+                        <button type="submit" class="btn-sm btn-danger">🗑 Delete</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr><td colspan="6" style="text-align:center;padding:48px;color:var(--gray);">No registered users yet</td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>setTimeout(()=>{const a=document.querySelector('.alert');if(a){a.style.transition='opacity 0.5s';a.style.opacity='0';setTimeout(()=>a.remove(),500);}},4000);</script>
+</body></html>

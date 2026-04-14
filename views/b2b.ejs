@@ -1,0 +1,121 @@
+<%- include('partials/header', { pageTitle: 'B2B Partner', activePage: 'b2b' }) %>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1920&q=80');"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="section-tag">Travel Agents & Operators</div>
+    <h1>B2B Partner Program</h1>
+    <div class="breadcrumb"><a href="/">Home</a> › B2B Partner</div>
+  </div>
+</div>
+
+<section class="section b2b-section">
+  <div class="b2b-grid" style="max-width:1280px;margin:0 auto;">
+    <div class="reveal">
+      <div class="section-tag">For Travel Agents</div>
+      <h2 class="section-title">Partner With <span>GoDude Holidays</span></h2>
+      <p class="section-sub">Join our B2B network and unlock exclusive benefits for your business. We support travel agents, tour operators, and corporate travel planners.</p>
+
+      <div class="b2b-features">
+        <div class="b2b-feat">
+          <h5>💰 Special Pricing</h5>
+          <p>Exclusive agent rates on all packages and hotels — not available to the public.</p>
+        </div>
+        <div class="b2b-feat">
+          <h5>📥 Downloadable Itineraries</h5>
+          <p>Ready-to-share PDF itineraries with your branding.</p>
+        </div>
+        <div class="b2b-feat">
+          <h5>🔒 Secure Dashboard</h5>
+          <p>Access your enquiries, bookings, and special offers in one place.</p>
+        </div>
+        <div class="b2b-feat">
+          <h5>📞 Dedicated Manager</h5>
+          <p>A dedicated relationship manager for fast response and support.</p>
+        </div>
+        <div class="b2b-feat">
+          <h5>🎯 Custom Packages</h5>
+          <p>Tailor packages for your clients — any destination, any budget.</p>
+        </div>
+        <div class="b2b-feat">
+          <h5>🤝 No Hidden Charges</h5>
+          <p>100% transparent pricing. What you see is what you get.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="b2b-form-card reveal">
+      <h3>Register as a Partner</h3>
+      <p>Fill in your details and our team will contact you within 24 hours.</p>
+
+      <% if (typeof success !== 'undefined' && success) { %>
+        <div class="alert alert-success">🎉 Registration submitted! We'll contact you within 24 hours.</div>
+      <% } %>
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="alert alert-error">❌ <%= error %></div>
+      <% } %>
+
+      <form id="b2bForm" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div class="form-group">
+            <label>Agency / Company Name *</label>
+            <input type="text" name="agencyName" placeholder="ABC Travels" required />
+          </div>
+          <div class="form-group">
+            <label>Contact Person *</label>
+            <input type="text" name="contactPerson" placeholder="Your name" required />
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div class="form-group">
+            <label>Mobile Number *</label>
+            <input type="tel" name="mobile" placeholder="+91 XXXXX XXXXX" required />
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" name="email" placeholder="agency@email.com" required />
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div class="form-group">
+            <label>City & State</label>
+            <input type="text" name="cityState" placeholder="Madurai, Tamil Nadu" />
+          </div>
+          <div class="form-group">
+            <label>Business Type</label>
+            <select name="businessType">
+              <option value="">Select type</option>
+              <option>Travel Agency</option>
+              <option>Tour Operator</option>
+              <option>Corporate Travel</option>
+              <option>Freelance Agent</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Preferred Destinations</label>
+          <input type="text" name="destinations" placeholder="Singapore, Bali, Thailand..." />
+        </div>
+        <div class="form-group">
+          <label>Monthly Volume (Pax)</label>
+          <select name="monthlyVolume">
+            <option value="">Estimate monthly pax</option>
+            <option>1–10 pax/month</option>
+            <option>10–50 pax/month</option>
+            <option>50–100 pax/month</option>
+            <option>100+ pax/month</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message (Optional)</label>
+          <textarea name="message" rows="3" placeholder="Any specific requirements or questions..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-ocean" style="margin-top:8px;">🤝 Submit Registration</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

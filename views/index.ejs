@@ -1,0 +1,295 @@
+<%- include('partials/header', { pageTitle: 'Home', activePage: 'home' }) %>
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Premium B2B Travel Partner</div>
+    <h1 class="hero-title">
+      Discover the World,<br>
+      <span class="highlight">One Journey</span> at a Time
+    </h1>
+    <p class="hero-desc">
+      GoDude Holidays offers curated travel packages across Southeast Asia for travel agents,
+      tour operators, and holidaymakers. Transparent pricing. Trusted service.
+    </p>
+    <div class="hero-actions">
+      <a href="#quote" class="btn btn-primary">✈ Get a Free Quote</a>
+      <a href="/destinations" class="btn btn-outline">🌍 View Destinations</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num" data-target="500" data-suffix="+">0+</div>
+        <div class="stat-label">Happy Travellers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="15" data-suffix="+">0+</div>
+        <div class="stat-label">Destinations</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="5" data-suffix=" Yrs">0</div>
+        <div class="stat-label">Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="100" data-suffix="%">0%</div>
+        <div class="stat-label">Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUICK QUOTE ─────────────────────────────────────────────── -->
+<section class="quote-section" id="quote">
+  <div class="quote-card reveal">
+    <h3>✈ Get an Instant Quote</h3>
+    <form class="quote-form" id="quoteForm">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" name="name" placeholder="Full name" required />
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="your@email.com" required />
+      </div>
+      <div class="form-group">
+        <label>Destination</label>
+        <select name="subject">
+          <option value="">Select destination</option>
+          <option>Singapore</option>
+          <option>Malaysia</option>
+          <option>Bali</option>
+          <option>Thailand</option>
+          <option>Vietnam</option>
+          <option>Custom Package</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <input type="text" name="message" placeholder="Travel dates, no. of persons..." />
+      </div>
+      <div class="form-group">
+        <label>&nbsp;</label>
+        <button type="submit" class="btn btn-primary" style="width:100%">🚀 Send Enquiry</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ── DESTINATIONS ─────────────────────────────────────────────── -->
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">Our Destinations</div>
+    <h2 class="section-title">Explore <span>Southeast Asia</span></h2>
+    <p class="section-sub">Hand-picked destinations with curated packages, transparent pricing, and expert support.</p>
+  </div>
+
+  <div class="dest-grid">
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=700&q=80" alt="Singapore" loading="lazy" />
+      <div class="dest-overlay">
+        <div class="dest-country">Southeast Asia</div>
+        <div class="dest-name">Singapore</div>
+        <div class="dest-meta">
+          <span class="dest-tag">City & Culture</span>
+          <span class="dest-tag">Shopping</span>
+        </div>
+        <a href="/destinations#singapore" class="dest-btn">Explore ›</a>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=700&q=80" alt="Malaysia" loading="lazy" />
+      <div class="dest-overlay">
+        <div class="dest-country">Southeast Asia</div>
+        <div class="dest-name">Malaysia</div>
+        <div class="dest-meta">
+          <span class="dest-tag">Nature</span>
+          <span class="dest-tag">Food</span>
+        </div>
+        <a href="/destinations#malaysia" class="dest-btn">Explore ›</a>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700&q=80" alt="Bali" loading="lazy" />
+      <div class="dest-overlay">
+        <div class="dest-country">Indonesia</div>
+        <div class="dest-name">Bali</div>
+        <div class="dest-meta">
+          <span class="dest-tag">Beaches</span>
+          <span class="dest-tag">Temples</span>
+        </div>
+        <a href="/destinations#bali" class="dest-btn">Explore ›</a>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=700&q=80" alt="Thailand" loading="lazy" />
+      <div class="dest-overlay">
+        <div class="dest-country">Southeast Asia</div>
+        <div class="dest-name">Thailand</div>
+        <div class="dest-meta">
+          <span class="dest-tag">Beaches</span>
+          <span class="dest-tag">Culture</span>
+        </div>
+        <a href="/destinations#thailand" class="dest-btn">Explore ›</a>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1555921015-5532091f6026?w=700&q=80" alt="Vietnam" loading="lazy" />
+      <div class="dest-overlay">
+        <div class="dest-country">Southeast Asia</div>
+        <div class="dest-name">Vietnam</div>
+        <div class="dest-meta">
+          <span class="dest-tag">History</span>
+          <span class="dest-tag">Scenic</span>
+        </div>
+        <a href="/destinations#vietnam" class="dest-btn">Explore ›</a>
+      </div>
+    </div>
+
+    <div class="dest-card reveal" style="background:linear-gradient(135deg,var(--ocean),var(--deep));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:40px;text-align:center;">
+      <div style="font-size:3rem;">✈</div>
+      <h3 style="color:var(--white);font-family:'Playfair Display',serif;">Custom Package?</h3>
+      <p style="color:rgba(255,255,255,0.7);font-size:14px;">Tell us your dream destination and we'll craft a perfect itinerary.</p>
+      <a href="/contact" class="btn btn-primary" style="margin-top:8px">Enquire Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ──────────────────────────────────────────────────── -->
+<section class="section services-bg">
+  <div style="max-width:1280px;margin:0 auto;padding:0 5%;position:relative;">
+    <div class="section-header center reveal">
+      <div class="section-tag" style="color:var(--gold)">What We Offer</div>
+      <h2 class="section-title" style="color:var(--white)">Our <span>Services</span></h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.6);margin:0 auto;">End-to-end travel solutions for agents and holidaymakers.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🏨</div>
+        <h4>Hotel Booking</h4>
+        <p>Curated hotels across all budgets with special agent rates and instant confirmation.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🚌</div>
+        <h4>Transfers</h4>
+        <p>Private and SIC transfers with professional drivers. Airport pickups, city tours.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🎭</div>
+        <h4>Sightseeing</h4>
+        <p>Guided tours, theme parks, cultural experiences — fully customizable itineraries.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🎟</div>
+        <h4>Ticket Booking</h4>
+        <p>Theme parks, attractions, shows — skip the queues with pre-booked entry tickets.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📦</div>
+        <h4>Custom Packages</h4>
+        <p>Tailor-made itineraries built around your group's preferences, budget & schedule.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🤝</div>
+        <h4>B2B Support</h4>
+        <p>Dedicated relationship managers, special pricing, downloadable itineraries for agents.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT TEASER ──────────────────────────────────────────────── -->
+<section class="section">
+  <div class="about-grid" style="max-width:1280px;margin:0 auto;">
+    <div class="about-img-wrap reveal">
+      <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&q=80" alt="Travel planning" />
+      <div class="about-badge">
+        <div class="num">5+</div>
+        <div class="label">Years of Excellence</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="section-tag">About GoDude Holidays</div>
+      <h2 class="section-title">Your Trusted <span>Travel Partner</span></h2>
+      <p class="section-sub">Based in Madurai, Tamil Nadu, GoDude Holidays specialises in B2B travel solutions across Southeast Asia. We work directly with hotels, attractions, and transport providers to bring you unbeatable value.</p>
+      <ul class="feature-list">
+        <li>No hidden charges — complete transparency</li>
+        <li>Dedicated support for travel agents & operators</li>
+        <li>Best rates on hotels, transfers & packages</li>
+        <li>Quick quote turnaround within 2 hours</li>
+        <li>Customised itineraries for every group</li>
+      </ul>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+        <a href="/about" class="btn btn-ocean">Learn More</a>
+        <a href="/b2b" class="btn btn-primary">Join as Agent</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ──────────────────────────────────────────────── -->
+<section class="section testimonials-bg">
+  <div class="section-header center reveal">
+    <div class="section-tag">Happy Travellers</div>
+    <h2 class="section-title">What Our Clients <span>Say</span></h2>
+  </div>
+  <div class="testi-grid" style="max-width:1280px;margin:0 auto;">
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"GoDude Holidays planned our Singapore-Malaysia trip perfectly. The hotel, transfers — everything was seamless and within budget!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div>
+          <h5>Ramesh Kumar</h5>
+          <span>Family Trip, Singapore</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"As a travel agent, GoDude has been our go-to B2B partner for Bali packages. Fast response, great rates, zero issues."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div>
+          <h5>Suresh Agencies</h5>
+          <span>B2B Partner, Madurai</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"Thailand honeymoon was beyond our expectations. The villa, the tours, the support — absolutely 5-star experience!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">P</div>
+        <div>
+          <h5>Priya & Arun</h5>
+          <span>Honeymoon, Thailand</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ─────────────────────────────────────────────────── -->
+<section style="background:linear-gradient(135deg,var(--gold),var(--amber));padding:80px 5%;text-align:center;">
+  <div class="reveal">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--deep);margin-bottom:16px;">Ready to Explore the World?</h2>
+    <p style="color:rgba(26,26,46,0.7);font-size:1.05rem;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;">Contact us today and get a custom travel package designed just for you.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/contact" class="btn" style="background:var(--deep);color:var(--white);">📞 Contact Us</a>
+      <a href="/b2b" class="btn" style="background:transparent;border:2px solid var(--deep);color:var(--deep);">🤝 Join as Agent</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

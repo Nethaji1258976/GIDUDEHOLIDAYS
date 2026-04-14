@@ -1,0 +1,127 @@
+<%- include('partials/admin-sidebar', { pageTitle: pkg ? 'Edit Package' : 'Add Package', activePage: 'packages' }) %>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <div class="topbar-title">
+      <h2><%= pkg ? '✏️ Edit Package' : '➕ Add New Package' %></h2>
+      <p><%= pkg ? 'Update package details' : 'Create a new travel package' %></p>
+    </div>
+    <div class="topbar-right">
+      <a href="/admin/packages" class="btn-sm btn-info">← Back to Packages</a>
+      <div class="admin-avatar">A</div>
+    </div>
+  </div>
+
+  <div class="admin-content">
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="alert alert-error" style="margin-bottom:20px;">❌ <%= error %></div>
+    <% } %>
+
+    <div class="admin-card">
+      <div class="card-header">
+        <h3><%= pkg ? 'Edit: ' + pkg.name : 'New Package Details' %></h3>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="<%= pkg ? '/admin/packages/edit/' + pkg._id : '/admin/packages/new' %>" class="admin-form">
+
+          <div class="row">
+            <div>
+              <label>Package Name *</label>
+              <input type="text" name="name" value="<%= pkg ? pkg.name : '' %>" placeholder="e.g. Singapore Highlights 5N/6D" required />
+            </div>
+            <div>
+              <label>Destination *</label>
+              <select name="destination" required>
+                <option value="">Select destination</option>
+                <% ['Singapore','Malaysia','Bali','Thailand','Vietnam','Custom'].forEach(d => { %>
+                  <option value="<%= d %>" <%= pkg && pkg.destination===d ? 'selected' : '' %>><%= d %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label>Duration *</label>
+              <input type="text" name="duration" value="<%= pkg ? pkg.duration : '' %>" placeholder="e.g. 5 Nights / 6 Days" required />
+            </div>
+            <div>
+              <label>Price (₹) *</label>
+              <input type="number" name="price" value="<%= pkg ? pkg.price : '' %>" placeholder="e.g. 45000" required min="0" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label>Price Label</label>
+              <input type="text" name="priceLabel" value="<%= pkg ? pkg.priceLabel : '' %>" placeholder="e.g. per person (twin sharing)" />
+            </div>
+            <div>
+              <label>Badge (Optional)</label>
+              <input type="text" name="badge" value="<%= pkg ? pkg.badge : '' %>" placeholder="e.g. Popular, New, Best Value" />
+            </div>
+          </div>
+
+          <div class="row full">
+            <div>
+              <label>Short Description *</label>
+              <textarea name="description" rows="3" placeholder="Brief overview of the package..." required><%= pkg ? pkg.description : '' %></textarea>
+            </div>
+          </div>
+
+          <div class="row full">
+            <div>
+              <label>Highlights (one per line)</label>
+              <textarea name="highlights" rows="5" placeholder="Gardens by the Bay&#10;Sentosa Island&#10;Universal Studios&#10;Marina Bay Sands"><%= pkg ? pkg.highlights : '' %></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label>Image URL</label>
+              <input type="url" name="imageUrl" value="<%= pkg ? pkg.imageUrl : '' %>"
+                     placeholder="https://images.unsplash.com/..."
+                     oninput="previewImg(this.value)" />
+              <img id="imgPreview" class="img-preview <%= pkg && pkg.imageUrl ? 'show' : '' %>"
+                   src="<%= pkg ? pkg.imageUrl : '' %>" alt="Preview" />
+            </div>
+            <div>
+              <label>Include Items (comma separated)</label>
+              <textarea name="includes" rows="4" placeholder="Hotel (4-star), Airport Transfers, Breakfast, Guided Tours"><%= pkg ? pkg.includes : '' %></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label>Active Status</label>
+              <select name="isActive">
+                <option value="true" <%= !pkg || pkg.isActive ? 'selected' : '' %>>✅ Active (Visible on site)</option>
+                <option value="false" <%= pkg && !pkg.isActive ? 'selected' : '' %>>❌ Hidden</option>
+              </select>
+            </div>
+            <div>
+              <label>Sort Order</label>
+              <input type="number" name="sortOrder" value="<%= pkg ? pkg.sortOrder : 0 %>" placeholder="0 = default" min="0" />
+            </div>
+          </div>
+
+          <div style="display:flex;gap:16px;margin-top:8px;">
+            <button type="submit" class="btn-sm btn-primary-sm" style="padding:14px 32px;font-size:15px;">
+              <%= pkg ? '💾 Save Changes' : '➕ Add Package' %>
+            </button>
+            <a href="/admin/packages" class="btn-sm btn-info" style="padding:14px 24px;font-size:15px;">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function previewImg(url) {
+  const img = document.getElementById('imgPreview');
+  if (url) { img.src = url; img.classList.add('show'); }
+  else { img.classList.remove('show'); }
+}
+</script>
+</body></html>

@@ -1,0 +1,88 @@
+<%- include('partials/admin-sidebar', { pageTitle: 'B2B Agents', activePage: 'agents' }) %>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <div class="topbar-title">
+      <h2>🤝 B2B Agent Registrations</h2>
+      <p>Approve or reject partner registrations</p>
+    </div>
+    <div class="topbar-right">
+      <div class="admin-avatar">A</div>
+    </div>
+  </div>
+
+  <div class="admin-content">
+    <% if (typeof msg !== 'undefined' && msg) { %>
+      <div class="alert alert-<%= msg.type==='success'?'success':'error' %>" style="margin-bottom:20px;"><%= msg.text %></div>
+    <% } %>
+
+    <div class="admin-card">
+      <div class="card-header">
+        <h3>All Registrations (<%= agents ? agents.length : 0 %>)</h3>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Agency</th>
+              <th>Contact</th>
+              <th>Mobile / Email</th>
+              <th>City</th>
+              <th>Type</th>
+              <th>Volume</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (agents && agents.length > 0) { %>
+              <% agents.forEach(a => { %>
+                <tr>
+                  <td><strong><%= a.agencyName %></strong></td>
+                  <td><%= a.contactPerson %></td>
+                  <td>
+                    <a href="tel:<%= a.mobile %>" style="color:var(--sky);text-decoration:none;"><%= a.mobile %></a><br>
+                    <a href="mailto:<%= a.email %>" style="color:var(--sky);text-decoration:none;font-size:12px;"><%= a.email %></a>
+                  </td>
+                  <td><%= a.cityState || '—' %></td>
+                  <td><%= a.businessType || '—' %></td>
+                  <td><%= a.monthlyVolume || '—' %></td>
+                  <td>
+                    <span class="badge badge-<%= a.status==='approved'?'success':a.status==='rejected'?'danger':'warning' %>">
+                      <%= a.status %>
+                    </span>
+                  </td>
+                  <td>
+                    <div class="action-btns">
+                      <% if (a.status !== 'approved') { %>
+                        <form method="POST" action="/admin/agents/status/<%= a._id %>" style="display:inline;">
+                          <input type="hidden" name="status" value="approved" />
+                          <button type="submit" class="btn-sm btn-success" title="Approve">✅ Approve</button>
+                        </form>
+                      <% } %>
+                      <% if (a.status !== 'rejected') { %>
+                        <form method="POST" action="/admin/agents/status/<%= a._id %>" style="display:inline;">
+                          <input type="hidden" name="status" value="rejected" />
+                          <button type="submit" class="btn-sm btn-danger" title="Reject">❌ Reject</button>
+                        </form>
+                      <% } %>
+                      <a href="mailto:<%= a.email %>" class="btn-sm btn-info" title="Email">📧</a>
+                      <form method="POST" action="/admin/agents/delete/<%= a._id %>" style="display:inline;"
+                            onsubmit="return confirm('Delete this agent?')">
+                        <button type="submit" class="btn-sm btn-danger">🗑</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr><td colspan="8" style="text-align:center;padding:48px;color:var(--gray);">No agent registrations yet</td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>setTimeout(()=>{const a=document.querySelector('.alert');if(a){a.style.transition='opacity 0.5s';a.style.opacity='0';setTimeout(()=>a.remove(),500);}},4000);</script>
+</body></html>

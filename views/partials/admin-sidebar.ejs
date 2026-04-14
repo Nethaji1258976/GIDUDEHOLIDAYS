@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle + ' | Admin' : 'Admin Panel' %> | GoDude Holidays</title>
+  <link rel="icon" type="image/jpeg" href="/images/logo.jpeg" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+
+<aside class="admin-sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <img src="/images/logo.jpeg" alt="GoDude Holidays" />
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section">Main</div>
+    <a href="/admin" class="sidebar-link <%= typeof activePage !== 'undefined' && activePage==='dashboard' ? 'active' : '' %>">
+      <span class="icon">📊</span> Dashboard
+    </a>
+
+    <div class="nav-section">Packages</div>
+    <a href="/admin/packages" class="sidebar-link <%= typeof activePage !== 'undefined' && activePage==='packages' ? 'active' : '' %>">
+      <span class="icon">✈</span> Manage Packages
+    </a>
+    <a href="/admin/packages/new" class="sidebar-link">
+      <span class="icon">➕</span> Add Package
+    </a>
+
+    <div class="nav-section">Enquiries</div>
+    <a href="/admin/contacts" class="sidebar-link <%= typeof activePage !== 'undefined' && activePage==='contacts' ? 'active' : '' %>">
+      <span class="icon">📧</span> Contact Enquiries
+      <% if (typeof unreadCount !== 'undefined' && unreadCount > 0) { %>
+        <span class="badge"><%= unreadCount %></span>
+      <% } %>
+    </a>
+    <a href="/admin/agents" class="sidebar-link <%= typeof activePage !== 'undefined' && activePage==='agents' ? 'active' : '' %>">
+      <span class="icon">🤝</span> B2B Agents
+    </a>
+
+    <div class="nav-section">Users</div>
+    <a href="/admin/users" class="sidebar-link <%= typeof activePage !== 'undefined' && activePage==='users' ? 'active' : '' %>">
+      <span class="icon">👥</span> Registered Users
+    </a>
+
+    <div class="nav-section">Site</div>
+    <a href="/" target="_blank" class="sidebar-link">
+      <span class="icon">🌐</span> View Website
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a href="/admin/logout" class="logout-btn">🚪 Logout</a>
+  </div>
+</aside>
